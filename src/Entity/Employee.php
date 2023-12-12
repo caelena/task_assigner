@@ -2,12 +2,23 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity]
+#[ORM\Table(name: 'employee')]
 class Employee
 {
+    #[ORM\Id]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    #[ORM\Column(type: 'integer')]
     private ?int $id;
+    #[ORM\Column(type: 'string')]
     private ?string $firstName;
+    #[ORM\Column(type: 'string')]
     private ?string $lastName;
+    #[ORM\Column(type: 'datetime', nullable: true)]
     private ?\DateTimeInterface $birthdayDate;
+    #[ORM\Column(type: 'boolean')]
     private ?bool $active;
 
     public function getId(): ?int
