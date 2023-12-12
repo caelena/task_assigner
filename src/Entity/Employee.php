@@ -16,7 +16,7 @@ class Employee
     private ?string $firstName;
     #[ORM\Column(type: 'string')]
     private ?string $lastName;
-    #[ORM\Column(type: 'datetime', nullable: true)]
+    #[ORM\Column(type: 'date', nullable: true)]
     private ?\DateTimeInterface $birthdayDate;
     #[ORM\Column(type: 'boolean')]
     private ?bool $active;
