@@ -15,7 +15,7 @@ class Task
     #[ORM\Column(type: 'string')]
     private ?string $title;
     #[ORM\Column(type: 'string')]
-    private ?Employee $employee;
+    private ?string $employee;
     #[ORM\Column(type: 'integer')]
     private ?int $priority;
     #[ORM\Column(type: 'string', unique: true)]
