@@ -41,5 +41,59 @@ class Task
         return $this;
     }
 
+    public function getEmployee(): ?string
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?string $employee): Task
+    {
+        $this->employee = $employee;
+        return $this;
+    }
+
+    public function getPriority(): ?int
+    {
+        return $this->priority;
+    }
+
+    public function setPriority(?int $priority): Task
+    {
+        $this->priority = $priority;
+        return $this;
+    }
+
+    public function getCode(): ?string
+    {
+        return $this->code;
+    }
+
+    public function setCode(?string $code): Task
+    {
+        $this->code = $code;
+        return $this;
+    }
+
+    public function getEstimatedTime(): ?\DateTimeInterface
+    {
+        return $this->estimatedTime;
+    }
+
+    public function setEstimatedTime(?\DateTimeInterface $estimatedTime): Task
+    {
+        $this->estimatedTime = $estimatedTime;
+        return $this;
+    }
+
+    public function getDetails(): ?string
+    {
+        return $this->details;
+    }
+
+    public function setDetails(?string $details): Task
+    {
+        $this->details = $details;
+        return $this;
+    }
 
 }

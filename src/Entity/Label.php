@@ -35,5 +35,26 @@ class Label
         return $this;
     }
 
+    public function getAbbreviation(): ?string
+    {
+        return $this->abbreviation;
+    }
+
+    public function setAbbreviation(?string $abbreviation): Label
+    {
+        $this->abbreviation = $abbreviation;
+        return $this;
+    }
+
+    public function getArchived(): ?bool
+    {
+        return $this->archived;
+    }
+
+    public function setArchived(?bool $archived): Label
+    {
+        $this->archived = $archived;
+        return $this;
+    }
 
 }
