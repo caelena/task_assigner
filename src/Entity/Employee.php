@@ -16,6 +16,9 @@ class Employee
     private ?string $firstName;
     #[ORM\Column(type: 'string')]
     private ?string $lastName;
+
+    #[ORM\Column(type: 'string', nullable: true)]
+    private ?Employee $substitute;
     #[ORM\Column(type: 'date', nullable: true)]
     private ?\DateTimeInterface $birthdayDate;
     #[ORM\Column(type: 'boolean')]
@@ -69,4 +72,19 @@ class Employee
         $this->active = $active;
         return $this;
     }
+
+    public function getSubstitute(): ?Employee
+    {
+        return $this->substitute;
+    }
+
+    public function setSubstitute(?Employee $substitute): Employee
+    {
+        if (!$this->isActive()) {
+            $this->substitute = $substitute;
+        }
+        return $this;
+    }
+
+
 }
