@@ -11,14 +11,13 @@ class Employee
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: 'integer')]
-    //#[ORM\OneToOne(targetEntity: Employee::class, inversedBy: 'subtitute')]
     private ?int $id;
     #[ORM\Column(type: 'string')]
     private ?string $firstName;
     #[ORM\Column(type: 'string')]
     private ?string $lastName;
-    //#[ORM\OneToOne(targetEntity: Employee::class, mappedBy: 'id')]
     #[ORM\Column(type: 'string', nullable: true)]
+    #[ORM\OneToOne(targetEntity: Employee::class)]
     private ?Employee $substitute;
     #[ORM\Column(type: 'date', nullable: true)]
     private ?\DateTimeInterface $birthdayDate;
