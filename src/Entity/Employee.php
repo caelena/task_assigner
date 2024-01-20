@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -23,6 +24,13 @@ class Employee
     private ?\DateTimeInterface $birthdayDate;
     #[ORM\Column(type: 'boolean')]
     private ?bool $active;
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'priority')]
+    private Collection $tasks;
+
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,5 +94,12 @@ class Employee
         return $this;
     }
 
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
 
 }
