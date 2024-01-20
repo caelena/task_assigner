@@ -12,55 +12,54 @@ class Priority
     #[ORM\Id]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     #[ORM\Column(type: 'integer')]
-    private int $id;
+    private ?int $id;
     #[ORM\Column(type: 'integer')]
-    private int $number;
+    private ?int $number;
     #[ORM\Column(type: 'string')]
-    private string $abbreviation;
+    private ?string $abbreviation;
     #[ORM\Column(type: 'string', length: 80)]
-    private string $description;
+    private ?string $description;
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'priority')]
-    private Collection $tasks;
+    private ?Collection $tasks;
 
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
     }
 
-
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNumber(): int
+    public function getNumber(): ?int
     {
         return $this->number;
     }
 
-    public function setNumber(int $number): Priority
+    public function setNumber(?int $number): Priority
     {
         $this->number = $number;
         return $this;
     }
 
-    public function getAbbreviation(): string
+    public function getAbbreviation(): ?string
     {
         return $this->abbreviation;
     }
 
-    public function setAbbreviation(string $abbreviation): Priority
+    public function setAbbreviation(?string $abbreviation): Priority
     {
         $this->abbreviation = $abbreviation;
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
 
-    public function setDescription(string $description): Priority
+    public function setDescription(?string $description): Priority
     {
         $this->description = $description;
         return $this;

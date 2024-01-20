@@ -20,9 +20,9 @@ class Label
     #[ORM\Column(type: 'boolean')]
     private ?bool $archived;
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'labels')]
-    private Employee $employee;
-    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'labels')]
-    private Collection $tasks;
+    private ?Employee $employee;
+    #[ORM\ManyToMany(targetEntity: Task::class, inversedBy: 'labels')]
+    private ?Collection $tasks;
 
     public function __construct()
     {

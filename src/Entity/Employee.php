@@ -26,9 +26,9 @@ class Employee
     private ?bool $active;
 
     #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'employee')]
-    private Collection $tasks;
-    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'employee')]
-    private Collection $labels;
+    private ?Collection $tasks;
+    #[ORM\OneToMany(targetEntity: Label::class, mappedBy: 'employee')]
+    private ?Collection $labels;
 
     public function __construct()
     {

@@ -27,8 +27,8 @@ class Task
     private ?\DateTimeInterface $estimatedTime;
     #[ORM\Column(type: 'text')]
     private ?string $details;
-    #[ORM\OneToMany(targetEntity: Label::class, mappedBy: 'tasks')]
-    private Collection $labels;
+    #[ORM\ManyToMany(targetEntity: Label::class, mappedBy: 'tasks')]
+    private ?Collection $labels;
 
     public function __construct()
     {
