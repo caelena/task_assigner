@@ -18,6 +18,8 @@ class Label
     private ?string $abbreviation;
     #[ORM\Column(type: 'boolean')]
     private ?bool $archived;
+    #[ORM\ManyToOne(targetEntity: Employee::class, mappedBy: 'labels')]
+    private Employee $employee;
 
     public function getId(): ?int
     {
@@ -56,5 +58,18 @@ class Label
         $this->archived = $archived;
         return $this;
     }
+
+    public function getEmployee(): Employee
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(Employee $employee): Label
+    {
+        $this->employee = $employee;
+        return $this;
+    }
+
+
 
 }

@@ -24,12 +24,16 @@ class Employee
     private ?\DateTimeInterface $birthdayDate;
     #[ORM\Column(type: 'boolean')]
     private ?bool $active;
-    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'priority')]
+
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'employee')]
     private Collection $tasks;
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'employee')]
+    private Collection $labels;
 
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
+        $this->labels = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,5 +105,14 @@ class Employee
     {
         return $this->tasks;
     }
+
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getLabels(): Collection
+    {
+        return $this->labels;
+    }
+
 
 }
