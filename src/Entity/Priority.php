@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -18,6 +19,14 @@ class Priority
     private string $abbreviation;
     #[ORM\Column(type: 'string', length: 80)]
     private string $description;
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'priority')]
+    private Collection $tasks;
+
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
+
 
     public function getId(): int
     {
@@ -57,5 +66,12 @@ class Priority
         return $this;
     }
 
+    /**
+     * @return Collection<int, Task>
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
 
 }
