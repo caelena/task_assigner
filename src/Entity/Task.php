@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -26,6 +27,14 @@ class Task
     private ?\DateTimeInterface $estimatedTime;
     #[ORM\Column(type: 'text')]
     private ?string $details;
+    #[ORM\OneToMany(targetEntity: Label::class, mappedBy: 'tasks')]
+    private Collection $labels;
+
+    public function __construct()
+    {
+        $this->labels = new ArrayCollection();
+    }
+
 
     public function getId(): ?int
     {
@@ -95,6 +104,32 @@ class Task
     public function setDetails(?string $details): Task
     {
         $this->details = $details;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Label>
+     */
+    public function getLabels(): Collection
+    {
+        return $this->labels;
+    }
+
+    public function addLabel(Label $label): Task
+    {
+        if (!$this->getLabels()->contains($label)) {
+            $this->getLabels()->add($label);
+            $label->addTask($this);
+        }
+        return $this;
+    }
+
+    public function removeLabel(Label $label): Task
+    {
+        if ($this->getLabels()->contains($label)) {
+            $this->getLabels()->remove($label);
+            $label->removeTask($this);
+        }
         return $this;
     }
 

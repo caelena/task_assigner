@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -18,8 +19,15 @@ class Label
     private ?string $abbreviation;
     #[ORM\Column(type: 'boolean')]
     private ?bool $archived;
-    #[ORM\ManyToOne(targetEntity: Employee::class, mappedBy: 'labels')]
+    #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'labels')]
     private Employee $employee;
+    #[ORM\OneToMany(targetEntity: Task::class, mappedBy: 'labels')]
+    private Collection $tasks;
+
+    public function __construct()
+    {
+        $this->tasks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +78,30 @@ class Label
         return $this;
     }
 
+    /**
+     * @return Collection<int, Label>
+     */
+    public function getTasks(): Collection
+    {
+        return $this->tasks;
+    }
 
+    public function addTask(Task $task): Label
+    {
+        if (!$this->getTasks()->contains($task)) {
+            $this->getTasks()->add($task);
+            $task->addLabel($this);
+        }
+        return $this;
+    }
+
+    public function removeTask(Task $task): Label
+    {
+        if ($this->getTasks()->contains($task)) {
+            $this->getTasks()->remove($task);
+            $task->removeLabel($this);
+        }
+        return $this;
+    }
 
 }
