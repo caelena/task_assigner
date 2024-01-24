@@ -15,11 +15,11 @@ class Task
     private ?int $id;
     #[ORM\Column(type: 'string')]
     private ?string $title;
-    #[ORM\Column(type: 'string')]
+
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'tasks')]
     private ?string $employee;
-    #[ORM\Column(type: 'integer')]
-    #[ORM\ManyToOne(targetEntity: Priority::class, inversedBy: 'tasks')]
+
+    #[ORM\OneToOne(targetEntity: Priority::class)]
     private ?int $priority;
     #[ORM\Column(type: 'string', unique: true)]
     private ?string $code;
