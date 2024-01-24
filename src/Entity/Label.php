@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\ORM\InheritanceType("SINGLE_TYPE")]
-#[ORM\DiscriminatorColumn(name: "archived", type: "boolean")]
+#[ORM\InheritanceType("SINGLE_TABLE")]
+#[ORM\DiscriminatorColumn(name: "state", type: "string")]
 class Label
 {
     #[ORM\Id]
