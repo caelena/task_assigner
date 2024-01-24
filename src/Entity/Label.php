@@ -6,7 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'label')]
+#[ORM\ORM\InheritanceType("SINGLE_TYPE")]
+#[ORM\DiscriminatorColumn(name: "archived", type: "boolean")]
 class Label
 {
     #[ORM\Id]
