@@ -17,6 +17,7 @@ class Task
     private ?string $title;
 
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'tasks')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?string $employee;
 
     #[ORM\OneToOne(targetEntity: Priority::class)]
