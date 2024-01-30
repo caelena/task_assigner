@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de empleados</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Substitute</th>
+                <th>Birthday Date</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td>{{ employee.id }}</td>
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.lastName }}</td>
+                {% if  employee.substitute.firstName is defined %}
+                    <td>{{ employee.substitute.firstName }}</td>
+                {% else %}
+                    <td>No hay sustituto/a definido/a</td>
+                {% endif %}
+                <td>{{ employee.birthdayDate | date('d/m/y') }}</td>
+                <td>{{ employee.active is defined ? 'Activo' : 'De baja'}}</td>
+            </tr>
+        {% else %}
+            <tr><td>No se han encontrado datos</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
