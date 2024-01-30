@@ -32,8 +32,10 @@ class TaskAssignerController extends AbstractController
     #[Route('/empleado/nombre/{nombre}', name: "empleado_filtrar", requirements: ['nombre' => '\w+'])]
     public function empleadoFiltrar(EmployeeRepository $employeeRepository, string $nombre): Response
     {
-
-        return $this->render('');
+        $employees = $employeeRepository->findBy(['firstName' => $nombre]);
+        return $this->render('empleadofiltrar.html.twig', [
+            'employees' => $employees
+        ]);
     }
 
     #[Route('/etiqueta/listar', name: 'etiqueta_listar')]
