@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Listado de etiquetas activadas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Abbreviation</th>
+                <th>Employee</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for label in labels %}
+                {% if label.state == 'Active' %}
+                    <tr>
+                        <td>{{ label.id }}</td>
+                        <td>{{ label.description }}</td>
+                        <td>{{ label.abbreviation }}</td>
+                        <td>{{ label.employee.firstName }}</td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -41,7 +41,10 @@ class TaskAssignerController extends AbstractController
     #[Route('/etiqueta/listar', name: 'etiqueta_listar')]
     public function etiquetaListar(LabelRepository $labelRepository): Response
     {
-
-        return $this->render('');
+        //Hay algún problema que se me escapa y es que no saca ningún dato
+        $labels = $labelRepository->findBy([], ['abbreviation' => 'ASC']);
+        return $this->render('etiquetalistar.html.twig', [
+            'labels' => $labels
+        ]);
     }
 }
