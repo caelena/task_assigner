@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: 'App\Repository\TaskRepository')]
@@ -18,10 +19,10 @@ class Task
 
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?string $employee;
+    private ?Employee $employee;
 
     #[ORM\OneToOne(targetEntity: Priority::class)]
-    private ?int $priority;
+    private ?Priority $priority;
     #[ORM\Column(type: 'string', unique: true)]
     private ?string $code;
     #[ORM\Column(type: 'time', nullable: true)]
@@ -53,23 +54,23 @@ class Task
         return $this;
     }
 
-    public function getEmployee(): ?string
+    public function getEmployee(): ?Employee
     {
         return $this->employee;
     }
 
-    public function setEmployee(?string $employee): Task
+    public function setEmployee(?Employee $employee): Task
     {
         $this->employee = $employee;
         return $this;
     }
 
-    public function getPriority(): ?int
+    public function getPriority(): ?Priority
     {
         return $this->priority;
     }
 
-    public function setPriority(?int $priority): Task
+    public function setPriority(?Priority $priority): Task
     {
         $this->priority = $priority;
         return $this;
