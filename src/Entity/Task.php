@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: 'App\Repository\TaskRepository')]
 #[ORM\Table(name: 'task')]
 class Task
 {
@@ -18,7 +18,7 @@ class Task
 
     #[ORM\ManyToOne(targetEntity: Employee::class, inversedBy: 'tasks')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Employee $employee;
+    private ?string $employee;
 
     #[ORM\OneToOne(targetEntity: Priority::class)]
     private ?int $priority;
