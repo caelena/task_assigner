@@ -41,7 +41,9 @@ class TaskAssignerController extends AbstractController
     #[Route('/etiqueta/listar', name: 'etiqueta_listar')]
     public function etiquetaListar(LabelRepository $labelRepository): Response
     {
-
-        return $this->render('');
+        $labels = $labelRepository->findBy([], ['abbreviation' => 'ASC']);
+        return $this->render('etiquetalistar.html.twig', [
+            'labels' => $labels
+        ]);
     }
 }
